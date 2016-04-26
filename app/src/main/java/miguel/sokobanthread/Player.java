@@ -27,4 +27,17 @@ public class Player extends Tile {
         dst.set(x, y, x + tileWidth, y + tileHeight);
         c.drawBitmap(player, null, dst, null);
     }
+
+    public void moveLeft(){
+        x-=tileWidth;
+    }
+    public void moveRight(){
+        x+=tileWidth;
+    }
+    public void moveUp(){
+        y-=tileWidth;
+    }
+    public void moveDown(){
+        y+=tileWidth;
+    }
 }

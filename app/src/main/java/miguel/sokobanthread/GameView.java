@@ -16,7 +16,11 @@ public class GameView extends SurfaceView
     public Bitmap mybitmap;
     private Tile icon;
     private Player player;
+    private Box b1;
+    private Wall w1;
+    private Target t1;
     public  int screenHeight, screenWidth, tileWidth, tileHeight;
+    private boolean moveLeft,moveRight,moveUP,moveDown;
     public GameView (Context context) {
         super(context) ;
         getHolder().addCallback(this);
@@ -37,6 +41,9 @@ public class GameView extends SurfaceView
           launch animator thread */
         icon = new Tile(0, 0, tileWidth, tileWidth);
         player = new Player(tileWidth, tileWidth, tileWidth, tileWidth, getContext());
+        b1 = new Box(tileWidth*2, tileWidth, tileWidth, tileWidth);
+        w1 = new Wall(tileWidth*3,tileWidth,tileWidth,tileWidth);
+        t1 = new Target(tileWidth*4,tileWidth,tileWidth, tileWidth);
         gt = new GameThread(this);
         gt.start();
     }
@@ -59,8 +66,38 @@ public class GameView extends SurfaceView
 
     @Override
     public boolean onTouchEvent(MotionEvent e){
-        //update game state by responding to event
-        // touch up-down-move
+        float x = e.getX();
+        float y = e.getY();
+        switch (e.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                if((x > 0 && x < screenWidth/3) && (y > screenHeight/3 && y < 2*screenHeight/3)){
+                    player.moveLeft();
+                    moveLeft = true;
+                    System.out.println("moving left");
+                }
+                if((x>2*screenWidth/3 && x<screenWidth)&&(y>screenHeight/3 && y<2*screenHeight/3)){
+                    player.moveRight();
+                    moveRight = true;
+                    System.out.println("moving right");
+                }
+                if((x>screenWidth/3 && x<2*screenWidth/3)&&(y>0&&y<screenHeight/3)){
+                    player.moveUp();
+                    moveUP = true;
+                    System.out.println("moving up");
+                }
+                if((x>screenWidth/3 && x<2*screenWidth/3)&&(y>2*screenHeight/3 && y<screenHeight)){
+                    player.moveDown();
+                    moveDown = true;
+                    System.out.println("moving down");
+                }
+                return true;
+            case MotionEvent.ACTION_UP:
+                moveDown = false;
+                moveLeft = false;
+                moveRight =false;
+                moveUP = false;
+                break;
+        }
         return true;
     }
 
@@ -71,6 +108,9 @@ public class GameView extends SurfaceView
     public void draw(Canvas c) {
         c.drawColor(Color.MAGENTA);
         icon.draw(c);
+        b1.draw(c);
+        w1.draw(c);
+        t1.draw(c);
         player.draw(c);
     }
 }
