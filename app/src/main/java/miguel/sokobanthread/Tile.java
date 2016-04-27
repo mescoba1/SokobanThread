@@ -7,13 +7,12 @@ import android.graphics.Paint;
 public class Tile {
     public int x, y;
     public boolean moveable;
-    private int tileWidth, tileHeight;
+    private int tileWidth;
     public Tile(){
 
     }
-    public Tile(int x, int y, int tileWidth, int tileHeight){
+    public Tile(int x, int y, int tileWidth){
         moveable = false;
-        this.tileHeight = tileHeight;
         this.tileWidth = tileWidth;
         this.x = x;
         this.y = y;
@@ -22,6 +21,6 @@ public class Tile {
     public void draw(Canvas c){
         Paint p = new Paint();
         p.setColor(Color.BLACK);
-        c.drawRect(x, y, x+tileWidth, y+tileHeight, p);
+        c.drawRect(x, y, x+tileWidth, y+tileWidth, p);
     }
 }

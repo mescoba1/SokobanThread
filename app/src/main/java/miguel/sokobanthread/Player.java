@@ -13,9 +13,8 @@ public class Player extends Tile {
     public final boolean moveable;
     private int tileWidth, tileHeight;
     Bitmap player;
-    public Player(int x, int y, int tileWidth, int tileHeight, Context context){
+    public Player(int x, int y, int tileWidth, Context context){
         moveable = true;
-        this.tileHeight = tileHeight;
         this.tileWidth = tileWidth;
         this.x = x;
         this.y = y;
@@ -24,7 +23,7 @@ public class Player extends Tile {
 
     public void draw(Canvas c){
         Rect dst = new Rect();
-        dst.set(x, y, x + tileWidth, y + tileHeight);
+        dst.set(x, y, x + tileWidth, y + tileWidth);
         c.drawBitmap(player, null, dst, null);
     }
 

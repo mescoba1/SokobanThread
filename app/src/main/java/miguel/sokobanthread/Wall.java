@@ -7,13 +7,12 @@ import android.graphics.Paint;
 public class Wall extends Tile {
     public int x, y;
     public final boolean moveable;
-    private int tileWidth, tileHeight;
+    private int tileWidth;
     public Wall(){
         moveable = false;
     }
-    public Wall(int x, int y, int tileWidth, int tileHeight){
+    public Wall(int x, int y, int tileWidth){
         moveable = false;
-        this.tileHeight = tileHeight;
         this.tileWidth = tileWidth;
         this.x = x;
         this.y = y;
@@ -22,6 +21,6 @@ public class Wall extends Tile {
     public void draw(Canvas c){
         Paint p = new Paint();
         p.setColor(Color.GRAY);
-        c.drawRect(x, y, x+tileWidth, y+tileHeight, p);
+        c.drawRect(x, y, x+tileWidth, y+tileWidth, p);
     }
 }

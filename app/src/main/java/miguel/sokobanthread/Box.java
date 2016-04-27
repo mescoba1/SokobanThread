@@ -12,9 +12,8 @@ public class Box extends Tile {
     public int x, y;
     public final boolean moveable;
     private int tileWidth, tileHeight;
-    public Box(int x, int y, int tileWidth, int tileHeight){
+    public Box(int x, int y, int tileWidth){
         moveable = true;
-        this.tileHeight = tileHeight;
         this.tileWidth = tileWidth;
         this.x = x;
         this.y = y;
@@ -23,6 +22,6 @@ public class Box extends Tile {
     public void draw(Canvas c){
         Paint p = new Paint();
         p.setColor(Color.GREEN);
-        c.drawRect(x, y, x + tileWidth, y + tileHeight, p);
+        c.drawRect(x, y, x + tileWidth, y + tileWidth, p);
     }
 }
