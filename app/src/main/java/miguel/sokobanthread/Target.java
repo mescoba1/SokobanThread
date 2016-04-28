@@ -13,7 +13,6 @@ public class Target extends Tile {
         this.tileWidth = tileWidth;
         this.x = x;
         this.y = y;
-        System.out.print("Target was made!");
     }
 
     public void draw(Canvas c){

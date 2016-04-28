@@ -21,7 +21,7 @@ public class Box extends Tile {
 
     public void draw(Canvas c){
         Paint p = new Paint();
-        p.setColor(Color.GREEN);
+        p.setColor(Color.BLUE);
         c.drawRect(x, y, x + tileWidth, y + tileWidth, p);
     }
 }

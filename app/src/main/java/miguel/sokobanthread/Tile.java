@@ -20,7 +20,7 @@ public class Tile {
 
     public void draw(Canvas c){
         Paint p = new Paint();
-        p.setColor(Color.BLACK);
+        p.setColor(Color.MAGENTA);
         c.drawRect(x, y, x+tileWidth, y+tileWidth, p);
     }
 }

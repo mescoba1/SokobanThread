@@ -16,6 +16,10 @@ public class GameView extends SurfaceView
     public Bitmap mybitmap;
     Game game;
     public  int screenHeight, screenWidth, tileWidth;
+    public enum Directions{
+        Up,Down,Left,Right
+    }
+    public Directions dir;
     public GameView (Context context) {
         super(context) ;
         getHolder().addCallback(this);
@@ -61,15 +65,19 @@ public class GameView extends SurfaceView
         switch (e.getAction()){
             case MotionEvent.ACTION_DOWN:
                 if((x > 0 && x < screenWidth/3) && (y > screenHeight/3 && y < 2*screenHeight/3)){
+                    dir = Directions.Left;
                     System.out.println("moving left");
                 }
                 if((x>2*screenWidth/3 && x<screenWidth)&&(y>screenHeight/3 && y<2*screenHeight/3)){
+                    dir = Directions.Right;
                     System.out.println("moving right");
                 }
                 if((x>screenWidth/3 && x<2*screenWidth/3)&&(y>0&&y<screenHeight/3)){
+                    dir = Directions.Up;
                     System.out.println("moving up");
                 }
                 if((x>screenWidth/3 && x<2*screenWidth/3)&&(y>2*screenHeight/3 && y<screenHeight)){
+                    dir = Directions.Down;
                     System.out.println("moving down");
                 }
                 return true;
@@ -85,11 +93,6 @@ public class GameView extends SurfaceView
 
     public void draw(Canvas c) {
         c.drawColor(Color.MAGENTA);
-        /*icon.draw(c);
-        b1.draw(c);
-        w1.draw(c);
-        t1.draw(c);
-        player.draw(c);*/
         game.draw(c);
     }
 }
