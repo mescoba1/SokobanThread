@@ -103,6 +103,8 @@ public class Game {
                 if(currentLevel[x][y-1] instanceof Box){
                     System.out.println("Block in the way");
                 } else {
+                    currentLevel[x][y-1] = currentLevel[x][y];
+                    currentLevel[x][y] = new Tile(tileSize);
                     System.out.println("moving upp");
                 }
             }
@@ -110,6 +112,15 @@ public class Game {
         else if (dir == GameView.Directions.Down){
             if(pos[1]==7){
                 return false;
+            }
+            if(y < 7 && !(currentLevel[x][y+1] instanceof Wall)){
+                if(currentLevel[x][y+1] instanceof Box){
+                    System.out.println("Block in the way");
+                } else {
+                    currentLevel[x][y+1] = currentLevel[x][y];
+                    currentLevel[x][y] = new Tile(tileSize);
+                    System.out.println("moving down");
+                }
             }
         }
         return false;
