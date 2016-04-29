@@ -5,20 +5,17 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 public class Wall extends Tile {
-    public int x, y;
     public final boolean moveable;
     private int tileWidth;
     public Wall(){
         moveable = false;
     }
-    public Wall(int x, int y, int tileWidth){
+    public Wall(int tileWidth){
         moveable = false;
         this.tileWidth = tileWidth;
-        this.x = x;
-        this.y = y;
     }
 
-    public void draw(Canvas c){
+    public void draw(Canvas c, int x, int y){
         Paint p = new Paint();
         p.setColor(Color.BLACK);
         c.drawRect(x, y, x+tileWidth, y+tileWidth, p);

@@ -9,17 +9,14 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 public class Box extends Tile {
-    public int x, y;
     public final boolean moveable;
     private int tileWidth, tileHeight;
-    public Box(int x, int y, int tileWidth){
+    public Box(int tileWidth){
         moveable = true;
         this.tileWidth = tileWidth;
-        this.x = x;
-        this.y = y;
     }
 
-    public void draw(Canvas c){
+    public void draw(Canvas c, int x, int y){
         Paint p = new Paint();
         p.setColor(Color.BLUE);
         c.drawRect(x, y, x + tileWidth, y + tileWidth, p);

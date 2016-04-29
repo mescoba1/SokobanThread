@@ -80,6 +80,7 @@ public class GameView extends SurfaceView
                     dir = Directions.Down;
                     System.out.println("moving down");
                 }
+                game.move(dir, game.getLevel());
                 return true;
             case MotionEvent.ACTION_UP:
                 break;
@@ -92,7 +93,7 @@ public class GameView extends SurfaceView
     }
 
     public void draw(Canvas c) {
-        c.drawColor(Color.MAGENTA);
+        c.drawColor(Color.GRAY);
         game.draw(c);
     }
 }
