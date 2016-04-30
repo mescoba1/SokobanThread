@@ -16,7 +16,7 @@ public class Game {
     static Tile[][] level1;
     static Tile[][] level2;
     static Tile[][] level3;
-   // static Tile[][] level4;
+    static Tile[][] level4;
     public Game(int sw, Context context) {
         screenWidth = sw;
         tileSize = sw / 8;
@@ -24,7 +24,7 @@ public class Game {
         level1 = genLevel1();
         level2 = genLevel2();
         level3 = genLevel3();
-       // level4 = genLevel4();
+        level4 = genLevel4();
     }
 
     public static Tile[][] genLevel1() {
@@ -118,6 +118,7 @@ public class Game {
                 else if( (i ==1 && j ==6) || (i ==3 && j ==6)){
                     level3[i][j] = new Target(tileSize);
                 }
+                //Making the boxes
                 else if( (i == 2 && j == 5) || (i ==3 && j == 2)){
                     level3[i][j] = new Box(tileSize);
                 }
@@ -129,7 +130,7 @@ public class Game {
         }
     return level3;
     }
-   /* public static Tile[][] genLevel4() {
+    public static Tile[][] genLevel4() {
         int x, y;
         Tile[][] level4 = new Tile[8][8];
         for (int i = 0; i < 8; i++) {
@@ -137,18 +138,22 @@ public class Game {
                 x = tileSize * i;
                 y = tileSize * j;
                 //Basic tiles
-                if( (i>=2 && i<=3 && j==1) || (i>=1 && i<=2 && j==2)
+                if( ( i==3 && j==1) || ( i<=2 && i>=1 && j==2)
                         ||(i>=3 && i <=6 && j==3) || (i>=5 && i <=6 && j==1)
                         ||(i==6 && j==2)){
                     level4[i][j] = new Tile(tileSize);
                 }
                 //targets
-                if( (i==2 && j==1) || (i==1 && j==3) || (i==2 && j==3)){
+                else if( (i>=1 && i<=2 && j==3) || (i==2 && j==1) ){
                     level4[i][j] = new Target(tileSize);
                 }
                 //player tile
-                if(i==1 && j==1){
+                else if(i==1 && j==1){
                     level4[i][j] = new Player(tileSize, context);
+                }
+                //block
+                else if( (i >=3 && i <=5 && j == 2)){
+                    level4[i][j] = new Box(tileSize);
                 }
                 //walls
                 else{
@@ -157,17 +162,17 @@ public class Game {
             }
         }
         return level4;
-    } */
+    }
     public void draw(Canvas c){
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
-                level3[i][j].draw(c, i*tileSize, j*tileSize);
+                level4[i][j].draw(c, i*tileSize, j*tileSize);
             }
         }
     }
     public static int[] findPlayer(){
         int[] player = new int[2];
-        Tile[][] currentLevel = level3;
+        Tile[][] currentLevel = level4;
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
                 if(currentLevel[i][j] instanceof Player){
@@ -227,7 +232,7 @@ public class Game {
         return false;
     }
     public Tile[][] getLevel(){
-        return level3;
+        return level4;
     }
 }
 
