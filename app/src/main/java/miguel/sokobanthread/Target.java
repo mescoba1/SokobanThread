@@ -5,10 +5,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 public class Target extends Tile {
-    public final boolean moveable;
+    public final boolean isMoveable, isEmpty;
     private int tileWidth;
     public Target(int tileWidth){
-        moveable = false;
+        isMoveable = false;
+        isEmpty = true;
         this.tileWidth = tileWidth;
     }
 

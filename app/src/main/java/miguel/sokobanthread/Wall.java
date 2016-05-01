@@ -5,13 +5,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 public class Wall extends Tile {
-    public final boolean moveable;
+    public final boolean isMoveable, isEmpty;
     private int tileWidth;
-    public Wall(){
-        moveable = false;
-    }
     public Wall(int tileWidth){
-        moveable = false;
+        super(tileWidth);
+        super.isEmpty = false;
+        isMoveable = false;
+        isEmpty = false;
         this.tileWidth = tileWidth;
     }
 

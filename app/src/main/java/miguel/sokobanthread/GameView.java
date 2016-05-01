@@ -16,6 +16,7 @@ public class GameView extends SurfaceView
     public Bitmap mybitmap;
     Game game;
     public  int screenHeight, screenWidth, tileWidth;
+    public boolean movement = false;
     public enum Directions{
         Up,Down,Left,Right
     }
@@ -80,7 +81,10 @@ public class GameView extends SurfaceView
                     dir = Directions.Down;
                     System.out.println("moving down");
                 }
-                game.move(dir, game.getLevel());
+                movement = game.move(dir, game.getLevel());
+                if(!movement){
+                    System.out.println("Cannot make this move!");
+                }
                 return true;
             case MotionEvent.ACTION_UP:
                 break;

@@ -78,50 +78,68 @@ public class Game {
         }
         return player;
     }
-    public boolean move(GameView.Directions dir, Tile[][] currentLevel){
+    public boolean move(GameView.Directions dir, Tile[][] currentLevel) {
         // x,y position of player
         int[] pos = findPlayer();
         int x = pos[0], y = pos[1];
-        System.out.println("x: " +pos[0]+ "y: " + pos[1]);
-        System.out.println("Direction: " + dir );
-        if(dir == GameView.Directions.Left){
-            //cannot move
-            if( pos[0]==0){
-                return false;
-            }
-        }
-        else if(dir == GameView.Directions.Right){
-            if(pos[0]==7){
-                return false;
-            }
-        }
-        else if(dir == GameView.Directions.Up){
-            if(pos[1]==0){
-                return false;
-            }
-            if(y > 0 && !(currentLevel[x][y-1] instanceof Wall)){
-                if(currentLevel[x][y-1] instanceof Box){
-                    System.out.println("Block in the way");
-                } else {
-                    currentLevel[x][y-1] = currentLevel[x][y];
+        System.out.println("x: " + pos[0] + "y: " + pos[1]);
+        System.out.println("Direction: " + dir);
+        if (dir == GameView.Directions.Left) {
+            if (x > 0 && (currentLevel[x-1][y].isEmpty)) {
+                currentLevel[x-1][y] = currentLevel[x][y];
+                currentLevel[x][y] = new Tile(tileSize);
+                return true;
+            } else if (x >  0 && !(currentLevel[x-1][y].isEmpty)) {
+                if (x-2> 0 && currentLevel[x-1][y].isMoveable && (currentLevel[x-2][y].isEmpty)) {
+                    currentLevel[x-2][y] = currentLevel[x-1][y];
+                    currentLevel[x-1][y] = currentLevel[x][y];
                     currentLevel[x][y] = new Tile(tileSize);
-                    System.out.println("moving upp");
+                    return true;
                 }
             }
-        }
-        else if (dir == GameView.Directions.Down){
-            if(pos[1]==7){
-                return false;
-            }
-            if(y < 7 && !(currentLevel[x][y+1] instanceof Wall)){
-                if(currentLevel[x][y+1] instanceof Box){
-                    System.out.println("Block in the way");
-                } else {
-                    currentLevel[x][y+1] = currentLevel[x][y];
+            return false;
+        } else if (dir == GameView.Directions.Right) {
+            if (x < 7 && (currentLevel[x+1][y].isEmpty)) {
+                currentLevel[x+1][y] = currentLevel[x][y];
+                currentLevel[x][y] = new Tile(tileSize);
+                return true;
+            } else if (x < 7 && !(currentLevel[x+1][y].isEmpty)) {
+                if (x-2> 0 && currentLevel[x+1][y].isMoveable && (currentLevel[x+2][y].isEmpty)) {
+                    currentLevel[x+2][y] = currentLevel[x+1][y];
+                    currentLevel[x+1][y] = currentLevel[x][y];
                     currentLevel[x][y] = new Tile(tileSize);
-                    System.out.println("moving down");
+                    return true;
                 }
             }
+            return false;
+        } else if (dir == GameView.Directions.Up) {
+            if (y > 0 && (currentLevel[x][y - 1].isEmpty)) {
+                currentLevel[x][y - 1] = currentLevel[x][y];
+                currentLevel[x][y] = new Tile(tileSize);
+                return true;
+            } else if (y > 0 && !(currentLevel[x][y - 1].isEmpty)) {
+                if (y - 2 > 0 && currentLevel[x][y - 1].isMoveable && (currentLevel[x][y - 2].isEmpty)) {
+                    currentLevel[x][y - 2] = currentLevel[x][y - 1];
+                    currentLevel[x][y - 1] = currentLevel[x][y];
+                    currentLevel[x][y] = new Tile(tileSize);
+                    return true;
+                }
+            }
+            return false;
+        } else if (dir == GameView.Directions.Down) {
+            if (y < 7 && (currentLevel[x][y + 1].isEmpty)) {
+                currentLevel[x][y + 1] = currentLevel[x][y];
+                currentLevel[x][y] = new Tile(tileSize);
+                return true;
+            } else if (y < 7 && !(currentLevel[x][y + 1].isEmpty)) {
+                if (y + 2 < 7 && currentLevel[x][y + 1].isMoveable && (currentLevel[x][y + 2].isEmpty)) {
+                    currentLevel[x][y + 2] = currentLevel[x][y + 1];
+                    currentLevel[x][y + 1] = currentLevel[x][y];
+                    currentLevel[x][y] = new Tile(tileSize);
+                    return true;
+                }
+            }
+            return false;
         }
         return false;
     }
