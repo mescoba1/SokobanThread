@@ -82,9 +82,9 @@ public class GameView extends SurfaceView
                     System.out.println("moving down");
                 }
                 movement = game.move(dir, game.getLevel());
-                if(!movement){
-                    System.out.println("Cannot make this move!");
-                }
+                System.out.println(movement);
+                System.out.println("targets " + game.targetsAquired);
+                game.checkLevelUp();
                 return true;
             case MotionEvent.ACTION_UP:
                 break;

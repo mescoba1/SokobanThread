@@ -1,6 +1,7 @@
 package miguel.sokobanthread;
 
 import android.content.Context;
+import android.content.SyncAdapterType;
 import android.graphics.Canvas;
 import android.graphics.Path;
 
@@ -17,6 +18,9 @@ public class Game {
     static Tile[][] level2;
     static Tile[][] level3;
     static Tile[][] level4;
+    public Vector<Tile[][]> levels = new Vector<Tile[][]>();
+    int currentLevel;
+    int targetsAquired;
     public Game(int sw, Context context) {
         screenWidth = sw;
         tileSize = sw / 8;
@@ -25,6 +29,11 @@ public class Game {
         level2 = genLevel2();
         level3 = genLevel3();
         level4 = genLevel4();
+        levels.add(level1);
+        levels.add(level2);
+        levels.add(level3);
+        levels.add(level4);
+        currentLevel = 0;
     }
 
     public static Tile[][] genLevel1() {
@@ -166,16 +175,16 @@ public class Game {
     public void draw(Canvas c){
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
-                level4[i][j].draw(c, i*tileSize, j*tileSize);
+                levels.get(currentLevel)[i][j].draw(c, i*tileSize, j*tileSize);
             }
         }
     }
-    public static int[] findPlayer(){
+    public int[] findPlayer(){
         int[] player = new int[2];
-        Tile[][] currentLevel = level4;
+        Tile[][] currLevel = levels.get(currentLevel);
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
-                if(currentLevel[i][j] instanceof Player){
+                if(currLevel[i][j] instanceof Player){
                     player[0] = i;
                     player[1] = j;
                     break;
@@ -188,15 +197,19 @@ public class Game {
         // x,y position of player
         int[] pos = findPlayer();
         int x = pos[0], y = pos[1];
-        System.out.println("x: " + pos[0] + "y: " + pos[1]);
-        System.out.println("Direction: " + dir);
+        System.out.println("x " + x + " y " + y);
+        System.out.println(dir);
+        //move left
         if (dir == GameView.Directions.Left) {
             if (x > 0 && (currentLevel[x-1][y].isEmpty)) {
                 currentLevel[x-1][y] = currentLevel[x][y];
                 currentLevel[x][y] = new Tile(tileSize);
                 return true;
             } else if (x >  0 && !(currentLevel[x-1][y].isEmpty)) {
-                if (x-2> 0 && currentLevel[x-1][y].isMoveable && (currentLevel[x-2][y].isEmpty)) {
+                if (x-2> 0 && currentLevel[x-1][y].isMoveable && (currentLevel[x-2][y].isEmpty)){
+                    if(currentLevel[x-2][y] instanceof Target){
+                        targetsAquired++;
+                    }
                     currentLevel[x-2][y] = currentLevel[x-1][y];
                     currentLevel[x-1][y] = currentLevel[x][y];
                     currentLevel[x][y] = new Tile(tileSize);
@@ -204,13 +217,18 @@ public class Game {
                 }
             }
             return false;
-        } else if (dir == GameView.Directions.Right) {
+        }
+        //move right
+        else if (dir == GameView.Directions.Right) {
             if (x < 7 && (currentLevel[x+1][y].isEmpty)) {
                 currentLevel[x+1][y] = currentLevel[x][y];
                 currentLevel[x][y] = new Tile(tileSize);
                 return true;
             } else if (x < 7 && !(currentLevel[x+1][y].isEmpty)) {
-                if (x-2> 0 && currentLevel[x+1][y].isMoveable && (currentLevel[x+2][y].isEmpty)) {
+                if (x+2> 0 && currentLevel[x+1][y].isMoveable && (currentLevel[x+2][y].isEmpty)) {
+                    if(currentLevel[x+2][y] instanceof Target){
+                        targetsAquired++;
+                    }
                     currentLevel[x+2][y] = currentLevel[x+1][y];
                     currentLevel[x+1][y] = currentLevel[x][y];
                     currentLevel[x][y] = new Tile(tileSize);
@@ -218,13 +236,22 @@ public class Game {
                 }
             }
             return false;
-        } else if (dir == GameView.Directions.Up) {
+        }
+        //move up
+        else if (dir == GameView.Directions.Up) {
+            System.out.println("is up tile empty? " +currentLevel[x][y-1].isEmpty);
+            System.out.println("wall? " + (currentLevel[x][y-1]instanceof Wall));
+            System.out.println("box " +(currentLevel[x][y-1] instanceof  Box));
+            System.out.println("level : " +this.currentLevel+1);
             if (y > 0 && (currentLevel[x][y - 1].isEmpty)) {
                 currentLevel[x][y - 1] = currentLevel[x][y];
                 currentLevel[x][y] = new Tile(tileSize);
                 return true;
             } else if (y > 0 && !(currentLevel[x][y - 1].isEmpty)) {
                 if (y - 2 > 0 && currentLevel[x][y - 1].isMoveable && (currentLevel[x][y - 2].isEmpty)) {
+                    if(currentLevel[x][y-2] instanceof Target){
+                        targetsAquired++;
+                    }
                     currentLevel[x][y - 2] = currentLevel[x][y - 1];
                     currentLevel[x][y - 1] = currentLevel[x][y];
                     currentLevel[x][y] = new Tile(tileSize);
@@ -232,13 +259,18 @@ public class Game {
                 }
             }
             return false;
-        } else if (dir == GameView.Directions.Down) {
+        }
+        //move down
+        else if (dir == GameView.Directions.Down) {
             if (y < 7 && (currentLevel[x][y + 1].isEmpty)) {
                 currentLevel[x][y + 1] = currentLevel[x][y];
                 currentLevel[x][y] = new Tile(tileSize);
                 return true;
             } else if (y < 7 && !(currentLevel[x][y + 1].isEmpty)) {
                 if (y + 2 < 7 && currentLevel[x][y + 1].isMoveable && (currentLevel[x][y + 2].isEmpty)) {
+                    if(currentLevel[x][y+2] instanceof Target){
+                        targetsAquired++;
+                    }
                     currentLevel[x][y + 2] = currentLevel[x][y + 1];
                     currentLevel[x][y + 1] = currentLevel[x][y];
                     currentLevel[x][y] = new Tile(tileSize);
@@ -250,7 +282,39 @@ public class Game {
         return false;
     }
     public Tile[][] getLevel(){
-        return level4;
+        return levels.get(currentLevel);
+    }
+    public void checkLevelUp(){
+        System.out.println("CL" + currentLevel);
+        switch (currentLevel){
+            //level 1
+            case 0:
+                System.out.println("I'm here");
+                if(targetsAquired >= 4){
+                    targetsAquired = 0;
+                    System.out.println("I want to level up now");
+                    currentLevel++;
+                }
+                break;
+            case 1:
+                if(targetsAquired >= 2){
+                    targetsAquired = 0;
+                    currentLevel++;
+                }
+                break;
+            case 2:
+                if(targetsAquired >= 2){
+                    targetsAquired = 0;
+                    currentLevel++;
+                }
+                break;
+            case 3:
+                if(targetsAquired >= 3){
+                    targetsAquired  =0;
+                    //gameover
+                }
+                break;
+        }
     }
 }
 
