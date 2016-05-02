@@ -42,13 +42,13 @@ public class GameView extends SurfaceView
           launch animator thread */
 
         //down button
-        b1= new Buttons(tileWidth*3/2,tileWidth*3, tileWidth/3 +tileWidth*10);
+        b1= new Buttons(tileWidth*3/2, tileWidth*3 +tileWidth/3, 2*screenHeight/3 +2*tileWidth);
         //up button
-        b2= new Buttons(tileWidth*3/2, tileWidth*3, tileWidth*8);
+        b2= new Buttons(tileWidth*3/2, tileWidth*3 +tileWidth/3, 2*screenHeight/3 );
         //right button
-        b3= new Buttons(tileWidth*3/2, tileWidth*6, tileWidth*9);
+        b3= new Buttons(tileWidth*3/2, tileWidth*6, 2*screenHeight/3 +tileWidth);
         //left button
-        b4= new Buttons(tileWidth*3/2, 0, tileWidth*9);
+        b4= new Buttons(tileWidth*3/2, tileWidth/2, 2*screenHeight/3 +tileWidth);
 
         gt = new GameThread(this);
         game = new Game(screenWidth, getContext());
@@ -78,23 +78,24 @@ public class GameView extends SurfaceView
         switch (e.getAction()){
             case MotionEvent.ACTION_DOWN:
 
-
-                if((x > 0 && x < screenWidth/3) && (y > screenHeight/3 && y < 2*screenHeight/3)){
-              //  if((x > tileWidth*3  && x < tileWidth*3+tileWidth) && (y > tileWidth/3 +tileWidth*10 && y < tileWidth/3 +tileWidth*10 +tileWidth)){
-
+                //MOVING LEFT
+                if((x > tileWidth/2  && x < tileWidth/2 +3*tileWidth/2) && (y > (2*screenHeight/3 +tileWidth) && y < 2*screenHeight/3 +tileWidth+ 3*tileWidth/3)){
                     dir = Directions.Left;
                    // System.out.println(Player.movable);
                     System.out.println("moving left");
                 }
-                if((x>2*screenWidth/3 && x<screenWidth)&&(y>screenHeight/3 && y<2*screenHeight/3)){
+                //MOVING RIGHT
+                if((x > tileWidth*6  && x < tileWidth*6 + 2*tileWidth/3)&&(y > 2*screenHeight/3 +tileWidth && y< 2*screenHeight/3 +tileWidth+ 3*tileWidth/3)){
                     dir = Directions.Right;
                     System.out.println("moving right");
                 }
-                if((x>screenWidth/3 && x<2*screenWidth/3)&&(y>0&&y<screenHeight/3)){
+                //MOVING UP
+                if((x>tileWidth*3 + tileWidth/3 && x<tileWidth*3 + tileWidth/3 +3*tileWidth/2)&&(y>2*screenHeight/3  && y<2*screenHeight/3  +3*tileWidth/2)){
                     dir = Directions.Up;
                     System.out.println("moving up");
                 }
-                if((x>screenWidth/3 && x<2*screenWidth/3)&&(y>2*screenHeight/3 && y<screenHeight)){
+                //MOVING DOWN
+                if((x>tileWidth*3 + tileWidth/3 && x<tileWidth*3 + tileWidth/3 +3*tileWidth/2)&&(y>2*screenHeight/3 +2*tileWidth && y<2*screenHeight/3 +2*tileWidth +3*tileWidth/2)){
                     dir = Directions.Down;
                     System.out.println("moving down");
                 }
