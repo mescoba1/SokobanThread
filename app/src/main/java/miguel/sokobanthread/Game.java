@@ -49,7 +49,6 @@ public class Game {
                 }
                 //Targets
                 else if ((i == 3 && j == 1) || (i == 1 && j == 4) || (i == 6 && j == 3) || (i == 4 && j == 6)) {
-                    System.out.println("I made a target at i = " + i + " j = " + j);
                     level1[i][j] = new Target(tileSize);
                 }
                 //Boxes
@@ -200,12 +199,13 @@ public class Game {
         int[] pos = findPlayer();
         Tile temp = currentLevel[0][0];
         int x = pos[0], y = pos[1];
-        System.out.println("x " + x + " y " + y);
-        System.out.println(dir);
         //move left
         if (dir == GameView.Directions.Left) {
+            //Space is empty
             if (x > 0 && (currentLevel[x-1][y].isEmpty)) {
+                //moving away from target
                 if(targetSteppedOn){
+                    //stepping onto a second target
                     if(!(currentLevel[x-1][y] instanceof Target)){
                         targetSteppedOn = false;
                     }
@@ -214,6 +214,7 @@ public class Game {
                     //targetSteppedOn = false;
                     return true;
                 }
+                //triggering targer
                 if(currentLevel[x-1][y] instanceof Target){
                     targetSteppedOn = true;
                     temp = currentLevel[x-1][y];
@@ -222,7 +223,9 @@ public class Game {
                 currentLevel[x-1][y] = currentLevel[x][y];
                 currentLevel[x][y] = new Tile(tileSize);
                 return true;
-            } else if (x >  0 && !(currentLevel[x-1][y].isEmpty)) {
+            }
+            //Space is not empty, could move box
+            else if (x >  0 && !(currentLevel[x-1][y].isEmpty)) {
                 if (x-2> 0 && currentLevel[x-1][y].isMoveable && (currentLevel[x-2][y].isEmpty)){
                     if(currentLevel[x-2][y] instanceof Target){
                         targetsAquired++;
@@ -364,6 +367,7 @@ public class Game {
         }
         return false;
     }
+    //contains the number of targets that each level has
     public Tile[][] getLevel(){
         return levels.get(currentLevel);
     }

@@ -82,27 +82,20 @@ public class GameView extends SurfaceView
                 //MOVING LEFT
                 if(x >= b4.x && x <=b4.x +buttonWidth &&  y>=b4.y && y<=b4.y+buttonWidth){
                     dir = Directions.Left;
-                   // System.out.println(Player.movable);
-                    System.out.println("moving left");
                 }
                 //MOVING RIGHT
                 if(x >= b3.x && x <=b3.x +buttonWidth &&  y>=b3.y && y<=b4.y+buttonWidth){
                     dir = Directions.Right;
-                    System.out.println("moving right");
                 }
                 //MOVING UP
                 if(x >= b2.x && x <=b2.x +buttonWidth &&  y>=b2.y && y<=b2.y+buttonWidth){
                     dir = Directions.Up;
-                    System.out.println("moving up");
                 }
                 //MOVING DOWN
                 if(x >= b1.x && x <=b1.x +buttonWidth &&  y>=b1.y && y<=b1.y+buttonWidth){
                     dir = Directions.Down;
-                    System.out.println("moving down");
                 }
                 movement = game.move(dir, game.getLevel());
-               // System.out.println(movement);
-                //System.out.println("targets " + game.targetsAquired);
                 game.checkLevelUp();
                 return true;
             case MotionEvent.ACTION_UP:
@@ -125,7 +118,6 @@ public class GameView extends SurfaceView
         b2.draw(c);
         b3.draw(c);
         b4.draw(c);
-
     }
 }
 
