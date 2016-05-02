@@ -79,23 +79,23 @@ public class GameView extends SurfaceView
             case MotionEvent.ACTION_DOWN:
 
                 //MOVING LEFT
-                if(x >= b4.x && x <=b4.x +tileWidth &&  y>=b4.y && y<=b4.y+tileWidth){
+                if(x >= b4.x && x <=b4.x +3*tileWidth/2 &&  y>=b4.y && y<=b4.y+3*tileWidth/2){
                     dir = Directions.Left;
                    // System.out.println(Player.movable);
                     System.out.println("moving left");
                 }
                 //MOVING RIGHT
-                if(x >= b3.x && x <=b3.x +tileWidth &&  y>=b3.y && y<=b4.y+tileWidth){
+                if(x >= b3.x && x <=b3.x +3*tileWidth/2 &&  y>=b3.y && y<=b4.y+3*tileWidth/2){
                     dir = Directions.Right;
                     System.out.println("moving right");
                 }
                 //MOVING UP
-                if(x >= b2.x && x <=b2.x +tileWidth &&  y>=b2.y && y<=b2.y+tileWidth){
+                if(x >= b2.x && x <=b2.x +3*tileWidth/2 &&  y>=b2.y && y<=b2.y+3*tileWidth/2){
                     dir = Directions.Up;
                     System.out.println("moving up");
                 }
                 //MOVING DOWN
-                if(x >= b1.x && x <=b1.x +tileWidth &&  y>=b1.y && y<=b1.y+tileWidth){
+                if(x >= b1.x && x <=b1.x +3*tileWidth/2 &&  y>=b1.y && y<=b1.y+3*tileWidth/2){
                     dir = Directions.Down;
                     System.out.println("moving down");
                 }
