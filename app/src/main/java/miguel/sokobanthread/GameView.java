@@ -79,29 +79,29 @@ public class GameView extends SurfaceView
             case MotionEvent.ACTION_DOWN:
 
                 //MOVING LEFT
-                if((x > tileWidth/2  && x < tileWidth/2 +3*tileWidth/2) && (y > (2*screenHeight/3 +tileWidth) && y < 2*screenHeight/3 +tileWidth+ 3*tileWidth/3)){
+                if((x >= tileWidth/2  && x <= tileWidth/2 +3*tileWidth/2) && (y >= (2*screenHeight/3 +tileWidth) && y <= 2*screenHeight/3 +tileWidth+ 3*tileWidth/3)){
                     dir = Directions.Left;
                    // System.out.println(Player.movable);
                     System.out.println("moving left");
                 }
                 //MOVING RIGHT
-                if((x > tileWidth*6  && x < tileWidth*6 + 2*tileWidth/3)&&(y > 2*screenHeight/3 +tileWidth && y< 2*screenHeight/3 +tileWidth+ 3*tileWidth/3)){
+                if((x >= tileWidth*6  && x <= tileWidth*6 + 2*tileWidth/3)&&(y >= 2*screenHeight/3 +tileWidth && y<= 2*screenHeight/3 +tileWidth+ 3*tileWidth/3)){
                     dir = Directions.Right;
                     System.out.println("moving right");
                 }
                 //MOVING UP
-                if((x>tileWidth*3 + tileWidth/3 && x<tileWidth*3 + tileWidth/3 +3*tileWidth/2)&&(y>2*screenHeight/3  && y<2*screenHeight/3  +3*tileWidth/2)){
+                if((x>=tileWidth*3 + tileWidth/3 && x<=tileWidth*3 + tileWidth/3 +3*tileWidth/2)&&(y>=2*screenHeight/3  && y<=2*screenHeight/3  +3*tileWidth/2)){
                     dir = Directions.Up;
                     System.out.println("moving up");
                 }
                 //MOVING DOWN
-                if((x>tileWidth*3 + tileWidth/3 && x<tileWidth*3 + tileWidth/3 +3*tileWidth/2)&&(y>2*screenHeight/3 +2*tileWidth && y<2*screenHeight/3 +2*tileWidth +3*tileWidth/2)){
+                if((x>=tileWidth*3 + tileWidth/3 && x<=tileWidth*3 + tileWidth/3 +3*tileWidth/2)&&(y>=2*screenHeight/3 +2*tileWidth && y<=2*screenHeight/3 +2*tileWidth +3*tileWidth/2)){
                     dir = Directions.Down;
                     System.out.println("moving down");
                 }
                 movement = game.move(dir, game.getLevel());
-                System.out.println(movement);
-                System.out.println("targets " + game.targetsAquired);
+               // System.out.println(movement);
+                //System.out.println("targets " + game.targetsAquired);
                 game.checkLevelUp();
                 return true;
             case MotionEvent.ACTION_UP:

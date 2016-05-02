@@ -211,6 +211,8 @@ public class Game {
                 if (x-2> 0 && currentLevel[x-1][y].isMoveable && (currentLevel[x-2][y].isEmpty)){
                     if(currentLevel[x-2][y] instanceof Target){
                         targetsAquired++;
+                        currentLevel[x-2][y] = currentLevel[x-1][y];
+                        currentLevel[x-2][y].isMoveable = false;
                     }
                     currentLevel[x-2][y] = currentLevel[x-1][y];
                     currentLevel[x-1][y] = currentLevel[x][y];
@@ -230,6 +232,8 @@ public class Game {
                 if (x+2> 0 && currentLevel[x+1][y].isMoveable && (currentLevel[x+2][y].isEmpty)) {
                     if(currentLevel[x+2][y] instanceof Target){
                         targetsAquired++;
+                        currentLevel[x+2][y] = currentLevel[x+1][y];
+                        currentLevel[x+2][y].isMoveable = false;
                     }
                     currentLevel[x+2][y] = currentLevel[x+1][y];
                     currentLevel[x+1][y] = currentLevel[x][y];
@@ -253,6 +257,8 @@ public class Game {
                 if (y - 2 > 0 && currentLevel[x][y - 1].isMoveable && (currentLevel[x][y - 2].isEmpty)) {
                     if(currentLevel[x][y-2] instanceof Target){
                         targetsAquired++;
+                        currentLevel[x][y - 2] = currentLevel[x][y - 1];
+                        currentLevel[x][y-2].isMoveable = false;
                     }
                     currentLevel[x][y - 2] = currentLevel[x][y - 1];
                     currentLevel[x][y - 1] = currentLevel[x][y];
@@ -272,6 +278,9 @@ public class Game {
                 if (y + 2 < 7 && currentLevel[x][y + 1].isMoveable && (currentLevel[x][y + 2].isEmpty)) {
                     if(currentLevel[x][y+2] instanceof Target){
                         targetsAquired++;
+                        currentLevel[x][y + 2] = currentLevel[x][y + 1];
+                        currentLevel[x][y+2].isMoveable = false;
+
                     }
                     currentLevel[x][y + 2] = currentLevel[x][y + 1];
                     currentLevel[x][y + 1] = currentLevel[x][y];

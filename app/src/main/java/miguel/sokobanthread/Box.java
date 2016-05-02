@@ -9,7 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 public class Box extends Tile {
-    public final boolean isMoveable, isEmpty;
+    public boolean isMoveable, isEmpty;
     private int tileWidth, tileHeight;
     public Box(int tileWidth){
         super.isEmpty = false;
