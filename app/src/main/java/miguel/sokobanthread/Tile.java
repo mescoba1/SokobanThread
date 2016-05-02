@@ -6,7 +6,7 @@ import android.graphics.Paint;
 
 public class Tile {
     public boolean isMoveable, isEmpty;
-    private int tileWidth;
+    int tileWidth;
     public Tile(){
         isEmpty = true;
         isMoveable = false;

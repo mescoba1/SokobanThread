@@ -77,13 +77,13 @@ public class Game {
                 y = tileSize * j;
 
                 //creating the basic tiles GRAY
-                if( (i >=1 && i<=3 && j >=1 && j <= 3)||(i==4 && j ==2)
-                        || (i ==6 && j >=1 && j<=3)
+                if( (i >=1 && i<=3 && j >=1 && j <= 2)||(i>=1 && i<=3 && j ==4)||(i==4 && j >=2&& j<=4)
+                        || (i ==6 && j >=1 && j<=4)
                         || (i ==5 && (j ==5 || j ==3))){
                     level2[i][j] = new Tile(tileSize);
                 }
                 //creating the targets RED
-                else if( (i ==6 && j ==4) || (i == 6 && j ==5)){
+                else if( (i ==1 && j ==3) || (i == 6 && j ==5)){
                     level2[i][j] = new Target(tileSize);
                 }
                 //creating the Boxes BLUE
@@ -115,8 +115,8 @@ public class Game {
                 if( (i >=2 && i<=6 && j==1) || (i>=4 && i<=6 && j ==2)
                         || (i==2 && j>=2 && j<=4 )
                         || (i==3 && j == 3) || (i >=5 && i<=6 && j ==3)
-                        || (i>=3 && i<=5 && j ==5) || (i==2 && j ==6)
-                        || (i>=4 && i <=5 && j ==6)){
+                        || (i>=3 && i<=4 && j ==5) || (i==2 && j ==6)
+                        || (i>=3 && i <=5 && j ==6)){
                     level3[i][j] = new Tile(tileSize);
                 }
                 //creating the player
@@ -124,7 +124,7 @@ public class Game {
                     level3[i][j] = new Player(tileSize, context);
                 }
                 //making the targets
-                else if( (i ==1 && j ==6) || (i ==3 && j ==6)){
+                else if( (i ==1 && j ==6) || (i ==5 && j ==5)){
                     level3[i][j] = new Target(tileSize);
                 }
                 //Making the boxes
@@ -147,13 +147,15 @@ public class Game {
                 x = tileSize * i;
                 y = tileSize * j;
                 //Basic tiles
-                if( ( i==3 && j==1) || ( i<=2 && i>=1 && j==2)
-                        ||(i>=3 && i <=6 && j==3) || (i>=5 && i <=6 && j==1)
-                        ||(i==6 && j==2)){
+                if( ( i>=2 && i<=3 && j==1) || ( i<=2 && i>=1 && j==2)
+                        ||(i>=2 && i <=4 && j==3) ||(i==6 && j==3)
+                        || (i>=5 && i <=6 && j==1) || (i==5 && j==2)
+                        || (i>=1 && i<=6 && j>=4 && j<=5) || (i>=1 && i<=3 && j==6)
+                        || (i>=5 && i<=6 && j==6)){
                     level4[i][j] = new Tile(tileSize);
                 }
                 //targets
-                else if( (i>=1 && i<=2 && j==3) || (i==2 && j==1) ){
+                else if( (i==1 && j==3) || (i==6 && j==2) || (i==4 && j ==6) ){
                     level4[i][j] = new Target(tileSize);
                 }
                 //player tile
@@ -161,7 +163,7 @@ public class Game {
                     level4[i][j] = new Player(tileSize, context);
                 }
                 //block
-                else if( (i >=3 && i <=5 && j == 2)){
+                else if( (i >=3 && i <=4 && j == 2) ||(i==5 && j==3)){
                     level4[i][j] = new Box(tileSize);
                 }
                 //walls
