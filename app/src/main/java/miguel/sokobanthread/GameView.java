@@ -79,23 +79,23 @@ public class GameView extends SurfaceView
             case MotionEvent.ACTION_DOWN:
 
                 //MOVING LEFT
-                if((x >= tileWidth/2  && x <= tileWidth/2 +3*tileWidth/2) && (y >= (2*screenHeight/3 +tileWidth) && y <= 2*screenHeight/3 +tileWidth+ 3*tileWidth/3)){
+                if(x >= b4.x && x <=b4.x +tileWidth &&  y>=b4.y && y<=b4.y+tileWidth){
                     dir = Directions.Left;
                    // System.out.println(Player.movable);
                     System.out.println("moving left");
                 }
                 //MOVING RIGHT
-                if((x >= tileWidth*6  && x <= tileWidth*6 + 2*tileWidth/3)&&(y >= 2*screenHeight/3 +tileWidth && y<= 2*screenHeight/3 +tileWidth+ 3*tileWidth/3)){
+                if(x >= b3.x && x <=b3.x +tileWidth &&  y>=b3.y && y<=b4.y+tileWidth){
                     dir = Directions.Right;
                     System.out.println("moving right");
                 }
                 //MOVING UP
-                if((x>=tileWidth*3 + tileWidth/3 && x<=tileWidth*3 + tileWidth/3 +3*tileWidth/2)&&(y>=2*screenHeight/3  && y<=2*screenHeight/3  +3*tileWidth/2)){
+                if(x >= b2.x && x <=b2.x +tileWidth &&  y>=b2.y && y<=b2.y+tileWidth){
                     dir = Directions.Up;
                     System.out.println("moving up");
                 }
                 //MOVING DOWN
-                if((x>=tileWidth*3 + tileWidth/3 && x<=tileWidth*3 + tileWidth/3 +3*tileWidth/2)&&(y>=2*screenHeight/3 +2*tileWidth && y<=2*screenHeight/3 +2*tileWidth +3*tileWidth/2)){
+                if(x >= b1.x && x <=b1.x +tileWidth &&  y>=b1.y && y<=b1.y+tileWidth){
                     dir = Directions.Down;
                     System.out.println("moving down");
                 }

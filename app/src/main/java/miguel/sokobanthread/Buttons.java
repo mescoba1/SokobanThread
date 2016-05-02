@@ -15,7 +15,7 @@ import android.graphics.Rect;
 
     public  class Buttons extends Tile {
         private int tileHeight, tileWidth;
-        private int x, y;
+        public int x, y;
 
         public  Buttons(int tileWidth, int x, int y){
             this.x = x;
