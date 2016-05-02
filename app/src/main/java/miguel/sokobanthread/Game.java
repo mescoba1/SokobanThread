@@ -7,9 +7,7 @@ import android.graphics.Path;
 
 import java.util.Vector;
 
-/**
- * Created by miguel on 4/26/2016.
- */
+
 public class Game {
     int screenWidth;
     static int tileSize;

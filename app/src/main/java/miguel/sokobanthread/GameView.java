@@ -16,7 +16,7 @@ public class GameView extends SurfaceView
         implements  SurfaceHolder.Callback {
     public Bitmap mybitmap;
     Game game;
-    public int screenHeight, screenWidth, tileWidth;
+    public int screenHeight, screenWidth, tileWidth, buttonWidth;
     public Buttons b1, b2, b3, b4;
     public boolean movement = false;
     public enum Directions{
@@ -37,18 +37,19 @@ public class GameView extends SurfaceView
         screenWidth = getWidth();
         screenHeight = getHeight();
         tileWidth = screenWidth/8;
+        buttonWidth = 3*tileWidth/2;
         /*initial state
          ...
           launch animator thread */
 
         //down button
-        b1= new Buttons(tileWidth*3/2, tileWidth*3 +tileWidth/3, 2*screenHeight/3 +2*tileWidth);
+        b1= new Buttons(buttonWidth, tileWidth*3 +tileWidth/3, 2*screenHeight/3 +2*tileWidth);
         //up button
-        b2= new Buttons(tileWidth*3/2, tileWidth*3 +tileWidth/3, 2*screenHeight/3 );
+        b2= new Buttons(buttonWidth, tileWidth*3 +tileWidth/3, 2*screenHeight/3 );
         //right button
-        b3= new Buttons(tileWidth*3/2, tileWidth*6, 2*screenHeight/3 +tileWidth);
+        b3= new Buttons(buttonWidth, tileWidth*6, 2*screenHeight/3 +tileWidth);
         //left button
-        b4= new Buttons(tileWidth*3/2, tileWidth/2, 2*screenHeight/3 +tileWidth);
+        b4= new Buttons(buttonWidth, tileWidth/2, 2*screenHeight/3 +tileWidth);
 
         gt = new GameThread(this);
         game = new Game(screenWidth, getContext());
@@ -79,23 +80,23 @@ public class GameView extends SurfaceView
             case MotionEvent.ACTION_DOWN:
 
                 //MOVING LEFT
-                if(x >= b4.x && x <=b4.x +3*tileWidth/2 &&  y>=b4.y && y<=b4.y+3*tileWidth/2){
+                if(x >= b4.x && x <=b4.x +buttonWidth &&  y>=b4.y && y<=b4.y+buttonWidth){
                     dir = Directions.Left;
                    // System.out.println(Player.movable);
                     System.out.println("moving left");
                 }
                 //MOVING RIGHT
-                if(x >= b3.x && x <=b3.x +3*tileWidth/2 &&  y>=b3.y && y<=b4.y+3*tileWidth/2){
+                if(x >= b3.x && x <=b3.x +buttonWidth &&  y>=b3.y && y<=b4.y+buttonWidth){
                     dir = Directions.Right;
                     System.out.println("moving right");
                 }
                 //MOVING UP
-                if(x >= b2.x && x <=b2.x +3*tileWidth/2 &&  y>=b2.y && y<=b2.y+3*tileWidth/2){
+                if(x >= b2.x && x <=b2.x +buttonWidth &&  y>=b2.y && y<=b2.y+buttonWidth){
                     dir = Directions.Up;
                     System.out.println("moving up");
                 }
                 //MOVING DOWN
-                if(x >= b1.x && x <=b1.x +3*tileWidth/2 &&  y>=b1.y && y<=b1.y+3*tileWidth/2){
+                if(x >= b1.x && x <=b1.x +buttonWidth &&  y>=b1.y && y<=b1.y+buttonWidth){
                     dir = Directions.Down;
                     System.out.println("moving down");
                 }

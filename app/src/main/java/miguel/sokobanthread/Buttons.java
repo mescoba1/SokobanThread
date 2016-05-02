@@ -1,8 +1,6 @@
 package miguel.sokobanthread;
 
-/**
- * Created by Christine on 4/30/2016.
- */
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,17 +13,19 @@ import android.graphics.Rect;
 
     public  class Buttons extends Tile {
         private int tileHeight, tileWidth;
+        public int buttonWidth;
         public int x, y;
 
-        public  Buttons(int tileWidth, int x, int y){
+        public  Buttons(int buttonWidth, int x, int y){
             this.x = x;
             this.y = y;
-            this.tileWidth = tileWidth;
+            //this.tileWidth = tileWidth;
+            this.buttonWidth = buttonWidth;
         }
     public void draw(Canvas c){
         Paint p = new Paint();
         p.setColor(Color.YELLOW);
-        c.drawRect(x, y, x+tileWidth, y+tileWidth,p);
+        c.drawRect(x, y, x+buttonWidth, y+buttonWidth,p);
 
         }
     }
